@@ -9,7 +9,12 @@ C:\Workspace\github\TaskApp\TaskApp\TaskApp\bin\Debug\netcoreapp3.1\TaskApp.dll
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\bin\Debug\netcoreapp3.1\TaskApp.pdb
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\bin\Debug\netcoreapp3.1\TaskApp.Views.dll
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\bin\Debug\netcoreapp3.1\TaskApp.Views.pdb
-C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.csprojAssemblyReference.cache
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\bin\Debug\netcoreapp3.1\Dapper.dll
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\bin\Debug\netcoreapp3.1\System.Data.SQLite.dll
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\netstandard2.0\SQLite.Interop.dll
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\netstandard2.0\SQLite.Interop.dll
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\netstandard2.0\SQLite.Interop.dll
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\netstandard2.0\SQLite.Interop.dll
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.csproj.CoreCompileInputs.cache
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.MvcApplicationPartsAssemblyInfo.cache
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.RazorAssemblyInfo.cache
@@ -29,9 +34,10 @@ C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.RazorTargetAssemblyInfo.cache
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.RazorTargetAssemblyInfo.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.Views.pdb
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.csproj.CopyComplete
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\staticwebassets\TaskApp.StaticWebAssets.Manifest.cache
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\staticwebassets\TaskApp.StaticWebAssets.xml
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.dll
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.pdb
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.genruntimeconfig.cache
-C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.csproj.CopyComplete
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.csprojAssemblyReference.cache

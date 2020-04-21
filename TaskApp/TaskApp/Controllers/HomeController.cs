@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using TaskApp.Models;
+using TaskApp.Services;
 
 namespace TaskApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IServices services;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IServices services)
         {
             _logger = logger;
+            this.services = services;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var model = this.services.ViewService.CreateViewModel<BaseViewModel>(this.HttpContext, "Home");
+            return View(model);
         }
 
         public IActionResult Privacy()
