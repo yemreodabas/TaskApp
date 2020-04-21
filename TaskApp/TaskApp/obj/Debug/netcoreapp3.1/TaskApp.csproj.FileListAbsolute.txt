@@ -29,6 +29,7 @@ C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Register.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.RazorTargetAssemblyInfo.cache
@@ -40,4 +41,3 @@ C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\staticwebass
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.dll
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.pdb
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.genruntimeconfig.cache
-C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.csprojAssemblyReference.cache
