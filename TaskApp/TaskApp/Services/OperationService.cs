@@ -27,8 +27,17 @@ namespace TaskApp.Services
 		}
 		public void Delete(int id)
 		{
-			var operation = this._operationRepository.GetById(id);
+			var operation = this._operationRepository.GetByOpId(id);
 			this._operationRepository.Delete(id);
+			this._logRepository.Log(Enums.LogType.Info, $"Deleted Operation : {operation.Name}");
+		}
+
+		public void Update(int id)
+		{
+			var operation = this._operationRepository.GetByCurrentId(id);
+			operation.OperationStatus = 1;
+
+			this._operationRepository.UpdateOpStatus(operation);
 			this._logRepository.Log(Enums.LogType.Info, $"Deleted Operation : {operation.Name}");
 		}
 
@@ -37,11 +46,30 @@ namespace TaskApp.Services
 			return this._operationRepository.GetById(id);
 		}
 
+		public OperationModel GetByOperationId(int id)
+		{
+			return this._operationRepository.GetByOpId(id);
+		}
+
 		public List<OperationModel> GetAllOperation()
 		{
 			var operation = this._operationRepository.GetAll().ToList();
 
 			return operation;
+		}
+
+		public List<OperationModel> GetOperationByMissionId(int missionId)
+		{
+			var missions = this._operationRepository.GetByMissionId(missionId).Select(operation => new OperationModel(operation)).ToList();
+
+			return missions;
+		}
+
+		public List<OperationModel> GetAllOperationsByMissionId(int missionId)
+		{
+			var missions = this._operationRepository.GetOperationsByMissionId(missionId).ToList();
+
+			return missions;
 		}
 	}
 }

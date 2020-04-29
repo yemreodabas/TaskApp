@@ -24,7 +24,7 @@ namespace TaskApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.Query<UserModel>("SELECT u.*, ug.Name as GroupName FROM User u, UserGroup ug WHERE u.GroupId = ug.Id");
+				return dbConnection.Query<UserModel>("SELECT * FROM User");
 			}
 		}
 
@@ -32,7 +32,7 @@ namespace TaskApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.QuerySingle<UserModel>("SELECT u.*, ug.Name as GroupName FROM User u, UserGroup ug WHERE u.GroupId = ug.Id AND u.Id = @Id", new { Id = id });
+				return dbConnection.QuerySingle<UserModel>("SELECT * FROM User WHERE  Id = @Id", new { Id = id });
 			}
 		}
 
@@ -55,22 +55,6 @@ namespace TaskApp.Persistence.Dapper
 					"WHERE Id = @Id";
 
 				dbConnection.Query(sQuery, user);
-			}
-		}
-
-		public IEnumerable<User> GetByGroupId(int userGroupId)
-		{
-			using (IDbConnection dbConnection = this.OpenConnection())
-			{
-				return dbConnection.Query<User>("SELECT * FROM User WHERE GroupId = @GroupId", new { GroupId = userGroupId });
-			}
-		}
-
-		public int GetCountByGroupId(int userGroupId)
-		{
-			using (IDbConnection dbConnection = this.OpenConnection())
-			{
-				return dbConnection.ExecuteScalar<int>("SELECT COUNT(*) FROM User WHERE GroupId = @GroupId", new { GroupId = userGroupId });
 			}
 		}
 

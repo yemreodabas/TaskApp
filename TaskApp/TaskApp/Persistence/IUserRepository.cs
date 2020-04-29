@@ -14,8 +14,6 @@ namespace TaskApp.Persistence
         void Update(User user);
         IEnumerable<UserModel> GetAll();
         UserModel GetById(int id);
-        IEnumerable<User> GetByGroupId(int userGroupId);
-        int GetCountByGroupId(int userGroupId);
         int GetUserIdByLogin(string username, string password);
     }
 }

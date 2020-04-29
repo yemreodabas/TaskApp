@@ -27,6 +27,16 @@ namespace TaskApp.Controllers
             return View(model);
         }
 
+        public ActionResult HomeMissionDetail(int id)
+        {
+            var mission = id;
+
+            var model = this.services.ViewService.CreateViewModel<OperationViewModel>(this.HttpContext, nameof(this.HomeMissionDetail));
+            model.MissionId = mission.ToString();
+
+            return View(model);
+        }
+
         public IActionResult Privacy()
         {
             return View();

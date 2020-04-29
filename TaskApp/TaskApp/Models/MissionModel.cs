@@ -11,7 +11,7 @@ namespace TaskApp.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int UserId { get; set; }
-        public string MissionUserName { get; set; }
+        public string MissionUsername { get; set; }
 
         public MissionModel() { }
 
@@ -20,7 +20,6 @@ namespace TaskApp.Models
             this.Id = mission.Id;
             this.Name = mission.Name;
             this.UserId = mission.UserId;
-            this.MissionUserName = mission.MissionUsername;
         }
     }
 }

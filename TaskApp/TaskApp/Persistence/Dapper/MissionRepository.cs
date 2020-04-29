@@ -15,7 +15,7 @@ namespace TaskApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				dbConnection.Execute("INSERT INTO User (Username, Email, Password) VALUES(@Username, @Email, @Password)", mission);
+				dbConnection.Execute("INSERT INTO Mission (Name, UserId) VALUES(@Name, @UserId)", mission);
 				mission.Id = dbConnection.ExecuteScalar<int>("SELECT last_insert_rowid()");
 			}
 		}
@@ -24,7 +24,7 @@ namespace TaskApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.Query<MissionModel>("SELECT u.*, ug.Name as GroupName FROM User u, UserGroup ug WHERE u.GroupId = ug.Id");
+				return dbConnection.Query<MissionModel>("SELECT * FROM Mission");
 			}
 		}
 
@@ -32,7 +32,23 @@ namespace TaskApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.QuerySingle<MissionModel>("SELECT u.*, ug.Name as GroupName FROM Mission u, UserGroup ug WHERE u.GroupId = ug.Id AND u.Id = @Id", new { Id = id });
+				return dbConnection.QuerySingle<MissionModel>("SELECT m.*, u.Username as MissionUsername FROM Mission m, User u WHERE u.Id = m.UserId AND m.Id = @Id", new { Id = id });
+			}
+		}
+
+		public IEnumerable<MissionModel> GetMissionsByUserId(int userId)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.Query<MissionModel>("SELECT m.*, u.Username as MissionUsername FROM Mission m, User u WHERE u.Id = m.UserId AND UserId = @UserId", new { UserId = userId });
+			}
+		}
+
+		public IEnumerable<Mission> GetByUserId(int missionUserId)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.Query<Mission>("SELECT * FROM Mission WHERE  userId = @userId", new { userId = missionUserId });
 			}
 		}
 

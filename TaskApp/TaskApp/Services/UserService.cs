@@ -20,11 +20,25 @@ namespace TaskApp.Services
 			this._userRepository = userRepository;
 		}
 
-		public void AddNewUser(User user)
+		public bool AddNewUser(User user)
 		{
+			bool userCheck = true;
+
+			List<UserModel> userList = GetAllUsers();
+
+			for(int i = 0; i < userList.Count;i++)
+			{
+				if(user.Username == userList[i].Username)
+				{
+					return false;
+				}
+			}
+
 			this._userRepository.Insert(user);
 			this._logRepository.Log(Enums.LogType.Info, $"Inserted New User : {user.Username}");
 			// this._emailService.SendEmail("fsdf", "dsfsdfsdfdsf");
+
+			return userCheck;
 		}
 		public void Delete(int id)
 		{
@@ -36,16 +50,6 @@ namespace TaskApp.Services
 		public UserModel GetById(int id)
 		{
 			return this._userRepository.GetById(id);
-		}
-
-		public List<UserModel> GetUsersByGroupId(int userGroupId)
-		{
-			return this._userRepository.GetByGroupId(userGroupId).Select(user => new UserModel(user)).ToList();
-		}
-
-		public int GetUserCountByGroupId(int userGroupId)
-		{
-			return this._userRepository.GetCountByGroupId(userGroupId);
 		}
 
 		public List<UserModel> GetAllUsers()
