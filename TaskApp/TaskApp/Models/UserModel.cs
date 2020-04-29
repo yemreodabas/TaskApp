@@ -11,7 +11,6 @@ namespace TaskApp.Models
 		public int Id { get; set; }
 		public string Username { get; set; }
 		public string Email { get; set; }
-		public string Password { get; set; }
 
 		public UserModel() { }
 
@@ -20,7 +19,6 @@ namespace TaskApp.Models
 			this.Id = user.Id;
 			this.Username = user.Username;
 			this.Email = user.Email;
-			this.Password = user.Password;
 		}
 	}
 }

@@ -13,6 +13,7 @@ namespace TaskApp.Services
         void Delete(int id);
         MissionModel GetById(int id);
         List<MissionModel> GetAllMission();
-
+        List<MissionModel> GetMissionByUserId(int userId);
+        List<MissionModel> GetAllMyMissionsByUserId(int userId);
     }
 }

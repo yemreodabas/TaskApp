@@ -35,6 +35,16 @@ namespace TaskApp.Controllers
 			return View(model);
 		}
 
+		public ActionResult MissionDetail(int id)
+		{
+			var mission = id;
+
+			var model = this.services.ViewService.CreateViewModel<OperationViewModel>(this.HttpContext, nameof(this.MissionDetail));
+			model.MissionId = mission.ToString();
+
+			return View(model);
+		}
+
 		public IActionResult Logout()
 		{
 			this.services.UserService.Logout(this.HttpContext);

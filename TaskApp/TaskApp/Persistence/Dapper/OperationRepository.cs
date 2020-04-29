@@ -11,12 +11,12 @@ namespace TaskApp.Persistence.Dapper
 {
 	public class OperationRepository : BaseSqliteRepository, IOperationRepository
 	{
-		public void Insert(Operation mission)
+		public void Insert(Operation operation)
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				dbConnection.Execute("INSERT INTO User (Username, Email, Password) VALUES(@Username, @Email, @Password)", mission);
-				mission.Id = dbConnection.ExecuteScalar<int>("SELECT last_insert_rowid()");
+				dbConnection.Execute("INSERT INTO Operation (Name, MissionId, OperationStatus) VALUES(@Name, @MissionId, @OperationStatus)", operation);
+				operation.Id = dbConnection.ExecuteScalar<int>("SELECT last_insert_rowid()");
 			}
 		}
 
@@ -24,7 +24,7 @@ namespace TaskApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.Query<OperationModel>("SELECT u.*, ug.Name as GroupName FROM User u, UserGroup ug WHERE u.GroupId = ug.Id");
+				return dbConnection.Query<OperationModel>("SELECT * FROM Operation");
 			}
 		}
 
@@ -32,7 +32,39 @@ namespace TaskApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.QuerySingle<OperationModel>("SELECT u.*, ug.Name as GroupName FROM Mission u, UserGroup ug WHERE u.GroupId = ug.Id AND u.Id = @Id", new { Id = id });
+				return dbConnection.QuerySingle<OperationModel>("SELECT o.*, m.Id AS MissionId FROM Operation o, Mission m, WHERE  m.Id = o.MissionId AND o.Id = @Id", new { Id = id });
+			}
+		}
+
+		public OperationModel GetByOpId(int id)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.QuerySingle<OperationModel>("SELECT * FROM Operation WHERE Id = @Id", new { Id = id });
+			}
+		}
+
+		public Operation GetByCurrentId(int id)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.QuerySingle<Operation>("SELECT * FROM Operation WHERE Id = @Id", new { Id = id });
+			}
+		}
+
+		public IEnumerable<OperationModel> GetOperationsByMissionId(int missionId)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.Query<OperationModel>("SELECT * FROM Operation WHERE MissionId = @MissionId", new { MissionId = missionId });
+			}
+		}
+
+		public IEnumerable<Operation> GetByMissionId(int missionId)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.Query<Operation>("SELECT * FROM Operation WHERE  missionId = @missionId", new { MissionId = missionId });
 			}
 		}
 
@@ -40,16 +72,16 @@ namespace TaskApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				dbConnection.Execute("DELETE FROM Mission WHERE Id = @Id", new { Id = id });
+				dbConnection.Execute("DELETE FROM Operation WHERE Id = @Id", new { Id = id });
 			}
 		}
 
-		public void Update(Operation operation)
+		public void UpdateOpStatus(Operation operation)
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				string sQuery = "UPDATE Mission SET " +
-					"Name = @Name, " +
+				string sQuery = "UPDATE Operation SET " +
+					"OperationStatus = 1 " +
 					"WHERE Id = @Id";
 
 				dbConnection.Query(sQuery, operation);

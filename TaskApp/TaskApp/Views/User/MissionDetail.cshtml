@@ -1,0 +1,13 @@
+﻿@model OperationViewModel
+<script type="text/javascript" src="~/js/Pages/OperationList.js"></script>
+<div id="operation-form">
+    <h1>Add Operation</h1>
+    <input type="hidden" id="missionid-box" value="@Model.MissionId"/>
+    <div style="margin-bottom:60px;">
+        <div>Operation Name:</div>
+        <div><input type="text" id="operation-name" /></div>
+        <div><button id="operation-create-btn">Add Operation!</button></div>
+    </div>
+</div>
+<div id="error" style="margin-bottom:60px;display:none;"></div>
+<div id="operation-list" style="margin-bottom:60px;"></div>

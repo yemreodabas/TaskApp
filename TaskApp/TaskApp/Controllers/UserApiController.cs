@@ -51,10 +51,15 @@ namespace TaskApp.Controllers
 				newUser.Email = model.Email;
 				newUser.Password = model.Password;
 
-				this._userService.AddNewUser(newUser);
-				result = this._userService.GetById(newUser.Id);
+			 	bool userCheck = this._userService.AddNewUser(newUser);
 
-				return Json(ApiResponse<UserModel>.WithSuccess(result));
+				if(userCheck == true)
+				{
+					result = this._userService.GetById(newUser.Id);
+					return Json(ApiResponse<UserModel>.WithSuccess(result));
+				}
+
+				return Json(ApiResponse<UserModel>.WithError("User Exist"));
 			}
 			catch (Exception exp)
 			{

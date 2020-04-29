@@ -11,6 +11,7 @@ namespace TaskApp.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int MissionId { get; set; }
+        public int OperationStatus { get; set; }
 
         public OperationModel() { }
 
@@ -19,6 +20,7 @@ namespace TaskApp.Models
             this.Id = operation.Id;
             this.Name = operation.Name;
             this.MissionId = operation.MissionId;
+            this.OperationStatus = operation.OperationStatus;
         }
     }
 }

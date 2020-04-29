@@ -66,9 +66,8 @@ namespace TaskApp.Persistence.Dapper
 			{
 				sql = "create table Mission (" +
 							"Id INTEGER PRIMARY KEY, " +
-							"UserId INTEGER PRIMARY KEY, " +
-							"Name TEXT NOT NULL" +
-							"Username TEXT NOT NULL" +
+							"Name TEXT NOT NULL, " +
+							"UserId INTEGER NOT NULL " +
 						")";
 
 				command = new SQLiteCommand(sql, conn);
@@ -82,8 +81,9 @@ namespace TaskApp.Persistence.Dapper
 			{
 				sql = "create table Operation (" +
 							"Id INTEGER PRIMARY KEY, " +
+							"Name TEXT NOT NULL, " +
 							"MissionId INTEGER NOT NULL, " +
-							"Name TEXT NOT NULL" +
+							"OperationStatus INTEGER NOT NULL" +
 						")";
 
 				command = new SQLiteCommand(sql, conn);

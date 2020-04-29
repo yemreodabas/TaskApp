@@ -11,8 +11,12 @@ namespace TaskApp.Persistence
     {
         void Insert(Operation operation);
         void Delete(int id);
-        void Update(Operation operation);
+        void UpdateOpStatus(Operation operation);
+        Operation GetByCurrentId(int id);
         IEnumerable<OperationModel> GetAll();
+        OperationModel GetByOpId(int id);
         OperationModel GetById(int id);
+        IEnumerable<Operation> GetByMissionId(int missionId);
+        IEnumerable<OperationModel> GetOperationsByMissionId(int missionId);
     }
 }

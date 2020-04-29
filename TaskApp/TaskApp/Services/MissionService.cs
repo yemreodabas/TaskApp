@@ -43,5 +43,19 @@ namespace TaskApp.Services
 
 			return missions;
 		}
+
+		public List<MissionModel> GetMissionByUserId(int userId)
+		{
+			var missions = this._missionRepository.GetByUserId(userId).Select(mission => new MissionModel(mission)).ToList();
+
+			return missions;
+		}
+
+		public List<MissionModel> GetAllMyMissionsByUserId(int userId)
+		{
+			var missions = this._missionRepository.GetMissionsByUserId(userId).ToList();
+
+			return missions;
+		}
 	}
 }
