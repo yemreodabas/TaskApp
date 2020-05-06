@@ -50,10 +50,44 @@ namespace TaskApp.Controllers
 				newUser.Username = model.Username;
 				newUser.Email = model.Email;
 				newUser.Password = model.Password;
+				newUser.BirthYear = model.BirthYear;
 
-			 	bool userCheck = this._userService.AddNewUser(newUser);
+				bool userCheck = this._userService.AddNewUser(newUser);
 
 				if(userCheck == true)
+				{
+					result = this._userService.GetById(newUser.Id);
+					return Json(ApiResponse<UserModel>.WithSuccess(result));
+				}
+
+				return Json(ApiResponse<UserModel>.WithError("User Exist"));
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse<UserModel>.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpPut]
+		[Route(nameof(UpdateUser))]
+		public ActionResult<ApiResponse<UserModel>> UpdateUser([FromBody]CreateUserModel model)
+		{
+			try
+			{
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				UserModel result = null;
+
+				var newUser = new User();
+				newUser.Id = onlineUser.Id;
+				newUser.Username = model.Username;
+				newUser.Email = model.Email;
+				newUser.Password = model.Password;
+				newUser.BirthYear = model.BirthYear;
+
+				bool userCheck = this._userService.UpdateUser(newUser);
+
+				if (userCheck == true)
 				{
 					result = this._userService.GetById(newUser.Id);
 					return Json(ApiResponse<UserModel>.WithSuccess(result));
@@ -115,6 +149,170 @@ namespace TaskApp.Controllers
 			catch (Exception exp)
 			{
 				return Json(ApiResponse<UserModel>.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpPost]
+		[Route(nameof(FollowUser))]
+		public ActionResult<ApiResponse> FollowUser([FromBody] int targetUser)
+		{
+			try
+			{
+				var followerUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				this._userService.FollowUser(followerUser.Id, targetUser);
+
+				return Json(ApiResponse.WithSuccess());
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpDelete]
+		[Route(nameof(UnFollowUser))]
+		public ActionResult<ApiResponse> UnFollowUser([FromBody] int targetUser)
+		{
+			try
+			{
+				var followerUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				this._userService.UnFollowUser(followerUser.Id, targetUser);
+
+				return Json(ApiResponse.WithSuccess());
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpGet]
+		[Route(nameof(GetFollowUsers))]
+		public ActionResult<ApiResponse> GetFollowUsers()
+		{
+			try
+			{
+				var onlineId = this._userService.GetOnlineUser(this.HttpContext);
+
+				var users = this._userService.GetFollowUsers(onlineId.Id);
+
+				var response = ApiResponse<List<UserModel>>.WithSuccess(users);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpGet]
+		[Route(nameof(GetFollowerById))]
+		public ActionResult<ApiResponse> GetFollowerById(int userId)
+		{
+			try
+			{
+				var users = this._userService.GetFollowUsers(userId);
+
+				var response = ApiResponse<List<UserModel>>.WithSuccess(users);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpGet]
+		[Route(nameof(GetTargetUsers))]
+		public ActionResult<ApiResponse> GetTargetUsers()
+		{
+			try
+			{
+				var onlineId = this._userService.GetOnlineUser(this.HttpContext);
+
+				var users =  this._userService.GetTargetUsers(onlineId.Id);
+
+				var response = ApiResponse<List<UserModel>>.WithSuccess(users);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpGet]
+		[Route(nameof(GetTargetById))]
+		public ActionResult<ApiResponse> GetTargetById(int userId)
+		{
+			try
+			{
+				var users = this._userService.GetTargetUsers(userId);
+
+				var response = ApiResponse<List<UserModel>>.WithSuccess(users);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpGet]
+		[Route(nameof(GetNotTargetUsers))]
+		public ActionResult<ApiResponse> GetNotTargetUsers()
+		{
+			try
+			{
+				bool contain = false;
+
+				var onlineId = this._userService.GetOnlineUser(this.HttpContext);
+
+				var targetUsers = this._userService.GetTargetUsers(onlineId.Id);
+
+				var users = this._userService.GetAllUsers();
+
+				for(int i = 0; i < users.Count;i++)
+				{
+					if(users[i].Id == onlineId.Id)
+					{
+						users.RemoveAt(i);
+						break;
+					}
+				}
+
+				List<UserModel> newTargets = new List<UserModel>();
+
+				for (int i = 0; i < users.Count; i++)
+				{
+					for (int j = 0; j < targetUsers.Count; j++)
+					{
+						if (users[i].Id == targetUsers[j].Id)
+						{
+							contain = true;
+							continue;
+						}
+					}
+					if (contain == false)
+					{
+						newTargets.Add(users[i]);
+					}
+					contain = false;
+				}
+
+				var response = ApiResponse<List<UserModel>>.WithSuccess(newTargets);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
 			}
 		}
 	}

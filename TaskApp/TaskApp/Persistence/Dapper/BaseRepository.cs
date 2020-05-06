@@ -51,8 +51,9 @@ namespace TaskApp.Persistence.Dapper
 				sql = "create table User (" +
 							"Id INTEGER PRIMARY KEY, " +
 							"Username TEXT NOT NULL, " +
-							"Email TEXT NOT NULL," +
-							"Password TEXT NOT NULL" +
+							"Email TEXT NOT NULL, " +
+							"Password TEXT NOT NULL, " +
+							"BirthYear INTEGER NOT NULL " +
 						")";
 
 				command = new SQLiteCommand(sql, conn);
@@ -84,6 +85,20 @@ namespace TaskApp.Persistence.Dapper
 							"Name TEXT NOT NULL, " +
 							"MissionId INTEGER NOT NULL, " +
 							"OperationStatus INTEGER NOT NULL" +
+						")";
+
+				command = new SQLiteCommand(sql, conn);
+				command.ExecuteNonQuery();
+			}
+
+			sql = "SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = 'Follow'";
+			command = new SQLiteCommand(sql, conn);
+			count = Convert.ToInt32(command.ExecuteScalar());
+			if (count == 0)
+			{
+				sql = "create table Follow (" +
+							"FollowerUserId INTEGER NOT NULL, " +
+							"TargetUserId INTEGER NOT NULL" +
 						")";
 
 				command = new SQLiteCommand(sql, conn);

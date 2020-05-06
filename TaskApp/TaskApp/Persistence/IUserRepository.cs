@@ -15,5 +15,9 @@ namespace TaskApp.Persistence
         IEnumerable<UserModel> GetAll();
         UserModel GetById(int id);
         int GetUserIdByLogin(string username, string password);
+        void FollowUser(int followerUserId, int targetUserId);
+        void UnFollowUser(int followerUserId, int targetUserId);
+        IEnumerable<UserModel> GetFollowerUsers(int onlineUserId);
+        IEnumerable<UserModel> GetTargetUsers(int onlineUserId);
     }
 }

@@ -41,6 +41,59 @@ namespace TaskApp.Controllers
 			}
 		}
 
+		[HttpGet]
+		[Route(nameof(GetActiveMissionsByUsers))]
+		public ActionResult<ApiResponse<List<MissionModel>>> GetActiveMissionsByUsers()
+		{
+			try
+			{
+				bool contain = false;
+
+				var user = this._userService.GetOnlineUser(this.HttpContext);
+				var users = this._userService.GetAllUsers();
+				var missions = this._missionService.GetAllMission();
+				var targets = this._userService.GetTargetUsers(user.Id);
+
+				for(int i =0; i< missions.Count;i++)
+				{
+					for(int j =0; j < users.Count;j++)
+					{
+						if(missions[i].UserId == users[j].Id)
+						{
+							missions[i].MissionUsername = users[j].Username;
+						}
+					}
+				}
+
+				List<MissionModel>  newMissionList = new List<MissionModel>();
+
+				for(int i = 0; i < missions.Count;i++)
+				{
+					for(int j = 0; j < targets.Count;j++)
+					{
+						if(missions[i].UserId == targets[j].Id)
+						{
+							contain = true;
+							continue;
+						}
+					}
+					if (contain == true)
+					{
+						newMissionList.Add(missions[i]);
+					}
+					contain = false;
+				}
+
+				var response = ApiResponse<List<MissionModel>>.WithSuccess(newMissionList);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse<List<MissionModel>>.WithError(exp.ToString()));
+			}
+		}
+
 		[HttpPost]
 		[Route(nameof(CreateMission))]
 		public ActionResult<ApiResponse<MissionModel>> CreateMission([FromBody]CreateMissionModel model)

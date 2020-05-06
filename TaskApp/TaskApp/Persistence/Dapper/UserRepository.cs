@@ -15,7 +15,7 @@ namespace TaskApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				dbConnection.Execute("INSERT INTO User (Username, Email, Password) VALUES(@Username, @Email, @Password)", user);
+				dbConnection.Execute("INSERT INTO User (Username, Email, Password, BirthYear) VALUES(@Username, @Email, @Password, @BirthYear)", user);
 				user.Id = dbConnection.ExecuteScalar<int>("SELECT last_insert_rowid()");
 			}
 		}
@@ -51,7 +51,8 @@ namespace TaskApp.Persistence.Dapper
 				string sQuery = "UPDATE User SET " +
 					"Username = @Username, " +
 					"Email = @Email, " +
-					"Password = @Password" +
+					"Password = @Password, " +
+					"BirthYear = @BirthYear " +
 					"WHERE Id = @Id";
 
 				dbConnection.Query(sQuery, user);
@@ -66,6 +67,38 @@ namespace TaskApp.Persistence.Dapper
 									new { Username = username, Password = password }).FirstOrDefault();
 
 				return userId;
+			}
+		}
+
+		public void FollowUser(int followerUserId, int targetUserId)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				dbConnection.Execute("INSERT INTO Follow (FollowerUserId, TargetUserId) VALUES(" + followerUserId + ", " + targetUserId +")", new { FollowerUserId = followerUserId , TargetUserId = targetUserId });
+			}
+		}
+
+		public void UnFollowUser(int followerUserId, int targetUserId)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				dbConnection.Execute("DELETE FROM Follow WHERE FollowerUserId = " + followerUserId + " AND TargetUserId =  " + targetUserId + "", new { FollowerUserId = followerUserId, TargetUserId = targetUserId });
+			}
+		}
+
+		public IEnumerable<UserModel> GetFollowerUsers(int onlineUserId)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.Query<UserModel>("SELECT u.* FROM User u, Follow f WHERE f.TargetUserId = @UserId AND u.Id = f.FollowerUserId", new { UserId = onlineUserId });
+			}
+		}
+
+		public IEnumerable<UserModel> GetTargetUsers(int onlineUserId)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.Query<UserModel>("SELECT u.* FROM User u, Follow f WHERE f.FollowerUserId = @UserId AND u.Id = f.TargetUserId", new { UserId = onlineUserId });
 			}
 		}
 	}
