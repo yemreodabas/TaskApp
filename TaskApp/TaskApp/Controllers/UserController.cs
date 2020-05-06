@@ -45,6 +45,36 @@ namespace TaskApp.Controllers
 			return View(model);
 		}
 
+		public ActionResult ListUser()
+		{
+			var model = this.services.ViewService.CreateViewModel<BaseViewModel>(this.HttpContext, nameof(this.ListUser));
+
+			return View(model);
+		}
+
+		public ActionResult MyProfile()
+		{
+			var model = this.services.ViewService.CreateViewModel<BaseViewModel>(this.HttpContext, nameof(this.MyProfile));
+
+			return View(model);
+		}
+		
+
+		public ActionResult NewsFeed()
+		{
+			var model = this.services.ViewService.CreateViewModel<BaseViewModel>(this.HttpContext, nameof(this.NewsFeed));
+
+			return View(model);
+		}
+
+		public ActionResult UserProfile(int id)
+		{
+			var model = this.services.ViewService.CreateViewModel<UserViewModel>(this.HttpContext, nameof(this.UserProfile));
+			model.UserId = id;
+
+			return View(model);
+		}
+
 		public IActionResult Logout()
 		{
 			this.services.UserService.Logout(this.HttpContext);

@@ -24,6 +24,7 @@ C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.Asse
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.TagHelpers.input.cache
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.TagHelpers.output.cache
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.RazorCoreGenerate.cache
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\HomeMissionDetail.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\Mission\ListMission.cshtml.g.cs
@@ -31,9 +32,12 @@ C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\User\ListMission.cshtml.g.cs
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\User\ListUser.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Login.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\User\MissionDetail.cshtml.g.cs
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\User\MyProfile.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\User\Register.cshtml.g.cs
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\User\UserProfile.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.RazorTargetAssemblyInfo.cache
@@ -46,4 +50,4 @@ C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.dll
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.pdb
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.genruntimeconfig.cache
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.csprojAssemblyReference.cache
-C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\Home\HomeMissionDetail.cshtml.g.cs
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\User\NewsFeed.cshtml.g.cs

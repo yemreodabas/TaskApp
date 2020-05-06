@@ -40,6 +40,27 @@ namespace TaskApp.Services
 
 			return userCheck;
 		}
+
+		public bool UpdateUser(User user)
+		{
+			bool userCheck = true;
+
+			List<UserModel> userList = GetAllUsers();
+
+			for (int i = 0; i < userList.Count; i++)
+			{
+				if (user.Username == userList[i].Username)
+				{
+					return false;
+				}
+			}
+
+			this._userRepository.Update(user);
+			this._logRepository.Log(Enums.LogType.Info, $"Inserted New User : {user.Username}");
+			// this._emailService.SendEmail("fsdf", "dsfsdfsdfdsf");
+
+			return userCheck;
+		}
 		public void Delete(int id)
 		{
 			var user = this._userRepository.GetById(id);
@@ -86,6 +107,29 @@ namespace TaskApp.Services
 			}
 
 			return this._userRepository.GetById(onlineUserId.Value);
+		}
+
+		public void FollowUser(int followUserId, int targetUserId)
+		{
+			this._userRepository.FollowUser(followUserId, targetUserId);
+		}
+		public void UnFollowUser(int followUserId, int targetUserId)
+		{
+			this._userRepository.UnFollowUser(followUserId, targetUserId);
+		}
+
+		public List<UserModel> GetFollowUsers(int onlineId)
+		{
+			var followUsers = this._userRepository.GetFollowerUsers(onlineId).ToList();
+
+			return followUsers;
+		}
+
+		public List<UserModel> GetTargetUsers(int onlineId)
+		{
+			var targetUsers = this._userRepository.GetTargetUsers(onlineId).ToList();
+
+			return targetUsers;
 		}
 	}
 }
