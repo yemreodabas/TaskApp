@@ -77,3 +77,15 @@ body {
 {
     text-decoration-line: line-through;
 }
+.btns {
+    background:#fbdfdf;
+
+    border:none;
+    border-radius: 5px 5px 5px 5px;
+
+    color: #ff6a00;
+    padding: 7px 12px 7px 12px;
+    font-weight: bold;
+    font-size: 14px;
+    outline: none;
+}

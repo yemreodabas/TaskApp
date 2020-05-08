@@ -52,7 +52,7 @@ function handleInsertUser(response) {
 function appendUser(user) {
 	let userTemplate = '<div id="user-id-##user.Id##">';
 	userTemplate += '<div>##user.Username## [Email: ##user.Email##] [Birth Year: ##user.BirthYear##]</div>';
-	userTemplate += '<div style="margin-bottom:20px;"><button id="user-delete-btn-##user.Id##">Delete User</button></div>';
+	userTemplate += '<div style="margin-bottom:20px;"><button class="btns" id="user-delete-btn-##user.Id##">Delete User</button></div>';
 	userTemplate += '</div>';
 
 	let userHtmlString = userTemplate

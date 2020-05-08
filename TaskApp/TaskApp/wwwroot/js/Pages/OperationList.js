@@ -84,8 +84,8 @@ function handleInsertOperation(response) {
 function appendOperation(operation) {
 	let operationTemplate = '<div id="operation-id-##operation.Id##">';
 	operationTemplate += '<div id="operation-name-##operation.Id##">##operation.Name##</div>';
-	operationTemplate += '<div style="margin-bottom:10px;"><button id="operation-delete-btn-##operation.Id##">Delete Operation</button></div>';
-	operationTemplate += '<div style="margin-bottom:25px;"><button id="operation-done-btn-##operation.Id##">Done!</button></div>';
+	operationTemplate += '<div style="margin-bottom:10px;"><button class="btns" id="operation-delete-btn-##operation.Id##">Delete Operation</button></div>';
+	operationTemplate += '<div style="margin-bottom:25px;"><button class="btns" id="operation-done-btn-##operation.Id##">Done!</button></div>';
 	operationTemplate += '</div>';
 
 	let storyHtmlString = operationTemplate
@@ -108,7 +108,7 @@ function appendOperation(operation) {
 function appendOperationDone(operation) {
 	let operationTemplate = '<div id="operation-id-##operation.Id##">';
 	operationTemplate += '<div id="operation-name-##operation.Id##">##operation.Name##</div>';
-	operationTemplate += '<div style="margin-bottom:10px;"><button id="operation-delete-btn-##operation.Id##">Delete Operation</button></div>';
+	operationTemplate += '<div style="margin-bottom:10px;"><button class="btns" id="operation-delete-btn-##operation.Id##">Delete Operation</button></div>';
 	operationTemplate += '</div>';
 
 	let storyHtmlString = operationTemplate

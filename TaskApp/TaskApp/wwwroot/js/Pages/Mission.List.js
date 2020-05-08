@@ -66,8 +66,8 @@ function handleInsertMission(response) {
 function appendMission(mission) {
 	let missionTemplate = '<div id="mission-id-##mission.Id##">';
 	missionTemplate += '<div>##mission.Name## [User: ##mission.MissionUsername##]</div>';
-	missionTemplate += '<button onclick="redirectOperation(##mission.Id##)" id="operation-detail-btn-##mission.Id##">Operation Detail</button>';
-	missionTemplate += '<div style="margin-bottom:20px;"><button id="mission-delete-btn-##mission.Id##">Delete Mission</button></div>';
+	missionTemplate += '<button style="margin-bottom:10px; margin-top:10px;" onclick="redirectOperation(##mission.Id##)" class="btns" id="operation-detail-btn-##mission.Id##">Operation Detail</button>';
+	missionTemplate += '<div style="margin-bottom:20px;"><button class="btns" id="mission-delete-btn-##mission.Id##">Delete Mission</button></div>';
 	missionTemplate += '</div>';
 
 	let storyHtmlString = missionTemplate

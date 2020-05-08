@@ -38,7 +38,7 @@ function handleGetMissions(response) {
 function appendMission(mission) {
 	let missionTemplate = '<div id="mission-id-##mission.Id##">';
 	missionTemplate += '<div>##mission.Name## [User: ##mission.MissionUsername##]</div>';
-	missionTemplate += '<button onclick="redirectOperation(##mission.Id##)" id="operation-detail-btn-##mission.Id##">Operation Detail</button>';
+	missionTemplate += '<button class="btns" onclick="redirectOperation(##mission.Id##)" id="operation-detail-btn-##mission.Id##">Operation Detail</button>';
 	missionTemplate += '</div>';
 
 	let storyHtmlString = missionTemplate
