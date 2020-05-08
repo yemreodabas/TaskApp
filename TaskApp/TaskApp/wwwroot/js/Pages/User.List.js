@@ -32,7 +32,7 @@ function tryGetFollowers() {
 function redirectUserProfile(userId) {
 	redirect("User/UserProfile/" + userId);
 }
-
+/*
 function handleGetOnlineUser(response) {
 	if (!response.Success) {
 		showError(response.ErrorMessage);
@@ -40,7 +40,7 @@ function handleGetOnlineUser(response) {
 	}
 	
 	page.onlineUserId = response.Data.Id;
-}
+}*/
 
 function handleNotGetTargets(response) {
 	if (!response.Success) {
@@ -112,8 +112,8 @@ function handleGetUsers(response) {
 function appendOnlineUser(user) {
 	let userTemplate = '<div id="user-id-##user.Id##">';
 	userTemplate += '<div>##user.Username## [Email: ##user.Email##] [Birth Year: ##user.BirthYear##]</div>';
-	userTemplate += '<button style="margin-bottom:15px; margin-top:15px;" onclick="redirectUserProfile(##user.Id##)" id="user-profile-btn-##user.Id##">User Profile</button>';
-	userTemplate += '<div style="margin-bottom:25px;"><button id="follow-user-btn-##user.Id##">FOLLOW</button></div>';
+	userTemplate += '<button style="margin-bottom:15px; margin-top:15px;" class="btns" onclick="redirectUserProfile(##user.Id##)" id="user-profile-btn-##user.Id##">User Profile</button>';
+	userTemplate += '<div style="margin-bottom:25px;"><button class="btns" id="follow-user-btn-##user.Id##">FOLLOW</button></div>';
 	userTemplate += '</div>';
 
 	let userHtmlString = userTemplate
@@ -134,7 +134,7 @@ function appendOnlineUser(user) {
 function appendUser(user) {
 	let userTemplate = '<div id="user-id-##user.Id##">';
 	userTemplate += '<div>##user.Username## [Email: ##user.Email##] [Birth Year: ##user.BirthYear##]</div>';
-	userTemplate += '<button style="margin-bottom:15px; margin-top:15px;" onclick="redirectUserProfile(##user.Id##)" id="user-profile-btn-##user.Id##">User Profile</button>';
+	userTemplate += '<button style="margin-bottom:15px; margin-top:15px;" class="btns" onclick="redirectUserProfile(##user.Id##)" id="user-profile-btn-##user.Id##">User Profile</button>';
 	userTemplate += '</div>';
 
 	let userHtmlString = userTemplate

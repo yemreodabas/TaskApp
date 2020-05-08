@@ -105,6 +105,21 @@ namespace TaskApp.Persistence.Dapper
 				command.ExecuteNonQuery();
 			}
 
+			sql = "SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = 'Forum'";
+			command = new SQLiteCommand(sql, conn);
+			count = Convert.ToInt32(command.ExecuteScalar());
+			if (count == 0)
+			{
+				sql = "create table Forum (" +
+							"Id INTEGER PRIMARY KEY, " +
+							"Post TEXT NOT NULL, " +
+							"UserId INTEGER NOT NULL " +
+						")";
+
+				command = new SQLiteCommand(sql, conn);
+				command.ExecuteNonQuery();
+			}
+
 			sql = "SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = 'Log'";
 			command = new SQLiteCommand(sql, conn);
 			count = Convert.ToInt32(command.ExecuteScalar());

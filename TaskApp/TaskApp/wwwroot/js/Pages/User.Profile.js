@@ -137,12 +137,6 @@ function appendUser(user) {
 	userTemplate += '<div style="margin-bottom:30px;" id="follow-list"></div>';
 	userTemplate += '</div>';
 
-	/*let userHtmlString = userTemplate
-		.split("##user.Id##").join(user.Id)//.replace("##user.Id##", userModel.Id)
-		.split("##user.Username##").join(user.Username)//.replace("##user.Username##", userModel.Username)
-		.split("##user.Email##").join(user.Email)//.replace("##user.Email##", userModel.Email)
-		.split("##user.BirthYear##").join(user.BirthYear)//.replace("##user.BirthYear##", userModel.BirthYear)*/
-
 	let userHtmlString = userTemplate
 		.split("##user.Id##").join(user.Id)//.replace("##user.Id##", userModel.Id)
 		.split("##user.Username##").join(user.Username)//.replace("##user.Username##", userModel.Username)
@@ -158,7 +152,7 @@ function appendUser(user) {
 function appendTargetUser(user) {
 	let userTemplate = '<div id="user-id-##user.Id##">';
 	userTemplate += '<div style="margin-bottom:15px;">##user.Username##</div>';
-	userTemplate += '<div style="margin-bottom:25px;"><button id="follow-user-btn-##user.Id##">FOLLOW</button></div>';
+	userTemplate += '<div style="margin-bottom:25px;"><button class="btns" id="follow-user-btn-##user.Id##">FOLLOW</button></div>';
 	userTemplate += '</div>';
 
 	let userHtmlString = userTemplate

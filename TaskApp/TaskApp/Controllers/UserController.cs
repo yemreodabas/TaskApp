@@ -52,6 +52,13 @@ namespace TaskApp.Controllers
 			return View(model);
 		}
 
+		public ActionResult ForumPost()
+		{
+			var model = this.services.ViewService.CreateViewModel<BaseViewModel>(this.HttpContext, nameof(this.ForumPost));
+
+			return View(model);
+		}
+
 		public ActionResult MyProfile()
 		{
 			var model = this.services.ViewService.CreateViewModel<BaseViewModel>(this.HttpContext, nameof(this.MyProfile));
