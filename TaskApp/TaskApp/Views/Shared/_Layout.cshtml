@@ -7,6 +7,8 @@
     <title>@Model.PageTitle - TaskApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/directMessage.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono&display=swap" rel="stylesheet">
     <script type="text/javascript" src="~/js/Http.js"></script>
     <script type="text/javascript" src="~/js/Parser.js"></script>
     <script type="text/javascript">
@@ -47,6 +49,9 @@
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="DirectMessage">Message</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Mission" asp-action="ListMission">MyMission</a>

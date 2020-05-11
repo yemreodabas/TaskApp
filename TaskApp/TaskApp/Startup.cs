@@ -53,12 +53,14 @@ namespace TaskApp
             services.AddSingleton<IMissionRepository, Persistence.Dapper.MissionRepository>();
             services.AddSingleton<IOperationRepository, Persistence.Dapper.OperationRepository>();
             services.AddSingleton<IForumPostRepository, Persistence.Dapper.ForumPostRepository>();
+            services.AddSingleton<IDirectMessageRepository, Persistence.Dapper.DirectMessageRepository>();
             services.AddSingleton<ILogRepository, Persistence.Dapper.LogRepository>();
 
             services.AddSingleton<IUserService, UserService>();
             services.AddSingleton<IMissionService, MissionService>();
             services.AddSingleton<IOperationService, OperationService>();
             services.AddSingleton<IForumPostService, ForumPostService>();
+            services.AddSingleton<IDirectMessageService, DirectMessageService>();
             services.AddSingleton<IViewService, ViewService>();
 
         }

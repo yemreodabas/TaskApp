@@ -14,10 +14,12 @@ namespace TaskApp.Controllers
 	public class UserApiController : Controller
 	{
 		private readonly IUserService _userService;
+		private readonly IDirectMessageService _directMessageService;
 
-		public UserApiController(IUserService userService)
+		public UserApiController(IUserService userService, IDirectMessageService directMessageService)
 		{
 			_userService = userService;
+			_directMessageService = directMessageService;
 		}
 
 		[HttpGet]
@@ -307,6 +309,50 @@ namespace TaskApp.Controllers
 				}
 
 				var response = ApiResponse<List<UserModel>>.WithSuccess(newTargets);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpPost]
+		[Route(nameof(NewMessageAdd))]
+		public ActionResult<ApiResponse<DirectMessageModel>> NewMessageAdd([FromBody]CreateDirectMessageModel model)
+		{
+			try
+			{
+				DirectMessageModel result = null;
+
+				var newMessage = new DirectMessage();
+				newMessage.Message = model.Message;
+				newMessage.SenderId = model.SenderId;
+				newMessage.ReceiverId = model.ReceiverId;
+
+				this._directMessageService.AddNewMessage(newMessage);
+
+				result = this._directMessageService.GetById(newMessage.Id);
+				return Json(ApiResponse<DirectMessageModel>.WithSuccess(result));
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse<DirectMessageModel>.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpGet]
+		[Route(nameof(GetMessageById))]
+		public ActionResult<ApiResponse> GetMessageById(int receiverId)
+		{
+			try
+			{
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				var messages = this._directMessageService.GetMessageById(onlineUser.Id, receiverId);
+
+				var response = ApiResponse<List<DirectMessageModel>>.WithSuccess(messages);
 
 				return Json(response);
 			}
