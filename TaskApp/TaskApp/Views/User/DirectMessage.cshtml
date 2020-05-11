@@ -1,0 +1,11 @@
+﻿@model UserViewModel
+<script type="text/javascript" src="~/js/Pages/DirectMessage.js"></script>
+<input type="hidden" id="userid-box" value="@Model.UserId" />
+<input type="hidden" id="online-user-box" value="@Model.OnlineUser.Id" />
+<div id="message-form">
+    <h1>Messages</h1>
+    <div id="user-list" style="margin-bottom:30px;"></div>
+</div>
+<div id="error" style="margin-bottom:30px;display:none;"></div>
+<div id="message-list" class="clearfix" style="margin-bottom:30px;"></div>
+<div id="send-message-box" style="margin-bottom:30px;"></div>

@@ -52,3 +52,4 @@ C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.genr
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\TaskApp.csprojAssemblyReference.cache
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\User\NewsFeed.cshtml.g.cs
 C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\Forum\ForumPost.cshtml.g.cs
+C:\Workspace\github\TaskApp\TaskApp\TaskApp\obj\Debug\netcoreapp3.1\Razor\Views\User\DirectMessage.cshtml.g.cs

@@ -7,18 +7,13 @@
 
 	if (onlineUser == null || onlineUser == undefined || onlineUser == "") {
 
-		tryGetTargetById(userId);
-		tryGetFollowerById(userId);
+		tryGetTargets();
+		tryGetFollowers;
 	}
 	else {
-
-		tryGetTargets();
-		tryGetFollowers();
 		tryGetTargetById(userId);
-		tryGetFollowerById(userId);
+		tryGetFollowerById(userId)
     }
-
-	
 }
 
 function tryGetUsers() {
@@ -115,7 +110,7 @@ function handleGetUser(response) {
 		return;
 	}
 
-	let userId = parseInt(document.getElementById("userid-box").value);
+	let userId = document.getElementById("userid-box").value;
 
 	page.users = response.Data;
 
@@ -130,11 +125,11 @@ function handleGetUser(response) {
 
 function appendUser(user) {
 	let userTemplate = '<div id="user-id-##user.Id##">';
-	userTemplate += '<div style="margin-bottom:15px;">##user.Username## [Email: ##user.Email##]</div>';
-	userTemplate += '<h2 style="margin-bottom:20px;">Targets</h2>';
-	userTemplate += '<div style="margin-bottom:30px;" id="target-list"></div>';
-	userTemplate += '<h2 style="margin-bottom:20px;">Follower</h2>';
-	userTemplate += '<div style="margin-bottom:30px;" id="follow-list"></div>';
+	userTemplate += '<div style="margin-bottom:15px;">##user.Username##</div>';
+	userTemplate += '<h2 style="margin-bottom:15px;">TARGETS</h2>';
+	userTemplate += '<div style="margin-bottom:15px; id="target-list" ></div>';
+	userTemplate += '<h2 style="margin-bottom:15px;">Follower</h2>';
+	userTemplate += '<div style="margin-bottom:15px; id="follow-list" ></div>';
 	userTemplate += '</div>';
 
 	let userHtmlString = userTemplate

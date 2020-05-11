@@ -73,6 +73,14 @@ namespace TaskApp.Controllers
 
 			return View(model);
 		}
+		
+		public ActionResult DirectMessage(int id)
+		{
+			var model = this.services.ViewService.CreateViewModel<UserViewModel>(this.HttpContext, nameof(this.DirectMessage));
+			model.UserId = id;
+
+			return View(model);
+		}
 
 		public ActionResult UserProfile(int id)
 		{

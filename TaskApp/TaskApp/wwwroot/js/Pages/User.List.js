@@ -28,7 +28,6 @@ function tryGetFollowers() {
 	httpRequest("api/User/GetFollowUsers", "GET", null, handleGetFollower, showError.bind(null, "System Error"));
 }*/
 
-
 function redirectUserProfile(userId) {
 	redirect("User/UserProfile/" + userId);
 }

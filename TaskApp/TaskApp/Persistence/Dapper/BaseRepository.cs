@@ -75,6 +75,22 @@ namespace TaskApp.Persistence.Dapper
 				command.ExecuteNonQuery();
 			}
 
+			sql = "SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = 'DirectMessage'";
+			command = new SQLiteCommand(sql, conn);
+			count = Convert.ToInt32(command.ExecuteScalar());
+			if (count == 0)
+			{
+				sql = "create table DirectMessage (" +
+							"Id INTEGER PRIMARY KEY, " +
+							"Message TEXT NOT NULL, " +
+							"SenderId INTEGER NOT NULL, " +
+							"ReceiverId INTEGER NOT NULL " +
+						")";
+
+				command = new SQLiteCommand(sql, conn);
+				command.ExecuteNonQuery();
+			}
+
 			sql = "SELECT count(*) FROM sqlite_master WHERE type = 'table' AND name = 'Operation'";
 			command = new SQLiteCommand(sql, conn);
 			count = Convert.ToInt32(command.ExecuteScalar());

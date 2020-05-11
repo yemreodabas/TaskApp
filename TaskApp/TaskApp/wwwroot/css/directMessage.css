@@ -1,0 +1,33 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.current-username
+{
+    margin-bottom:25px;
+}
+#message-list {
+    width: 350px;
+
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.message-input {
+    display: block;
+    margin-bottom: 15px;
+}
+.sender-message {
+    float: right;
+    margin-bottom: 5px;
+    padding-left:30px;
+    font-family: 'DM Mono', monospace;
+}
+.receiver-message {
+    float: left;
+    margin-bottom: 5px;
+    padding-right: 30px;
+    font-family: 'DM Mono', monospace;
+}
