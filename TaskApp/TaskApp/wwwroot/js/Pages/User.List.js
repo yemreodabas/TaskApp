@@ -110,8 +110,8 @@ function handleGetUsers(response) {
 
 function appendOnlineUser(user) {
 	let userTemplate = '<div id="user-id-##user.Id##">';
-	userTemplate += '<div>##user.Username## [Email: ##user.Email##] [Birth Year: ##user.BirthYear##]</div>';
-	userTemplate += '<button style="margin-bottom:15px; margin-top:15px;" class="btns" onclick="redirectUserProfile(##user.Id##)" id="user-profile-btn-##user.Id##">User Profile</button>';
+	userTemplate += '<a class="user-list-username" href="">##user.Username## [Email: ##user.Email##] [Birth Year: ##user.BirthYear##]</a>';
+	//userTemplate += '<button style="margin-bottom:15px; margin-top:15px;" class="btns" onclick="redirectUserProfile(##user.Id##)" id="user-profile-btn-##user.Id##">User Profile</button>';
 	userTemplate += '<div style="margin-bottom:25px;"><button class="btns" id="follow-user-btn-##user.Id##">FOLLOW</button></div>';
 	userTemplate += '</div>';
 
@@ -132,8 +132,8 @@ function appendOnlineUser(user) {
 
 function appendUser(user) {
 	let userTemplate = '<div id="user-id-##user.Id##">';
-	userTemplate += '<div>##user.Username## [Email: ##user.Email##] [Birth Year: ##user.BirthYear##]</div>';
-	userTemplate += '<button style="margin-bottom:15px; margin-top:15px;" class="btns" onclick="redirectUserProfile(##user.Id##)" id="user-profile-btn-##user.Id##">User Profile</button>';
+	userTemplate += '<a class="user-list-username" href="">##user.Username## [Email: ##user.Email##] [Birth Year: ##user.BirthYear##]</a>';
+	//userTemplate += '<button style="margin-bottom:15px; margin-top:15px;" class="btns" onclick="redirectUserProfile(##user.Id##)" id="user-profile-btn-##user.Id##">User Profile</button>';
 	userTemplate += '</div>';
 
 	let userHtmlString = userTemplate

@@ -28,16 +28,17 @@ namespace TaskApp.Controllers
 		{
 			try
 			{
-				var user = this._userService.GetAllUsers();
+				var onlineUser = this._userService.GetAllUsers();
+
 				var missions = this._missionService.GetAllMission();
 
 				for(int i = 0; i < missions.Count;i++)
 				{
-					for(int j = 0; j < user.Count; j++)
+					for(int j = 0; j < onlineUser.Count; j++)
 					{
-						if(missions[i].UserId == user[j].Id)
+						if(missions[i].UserId == onlineUser[j].Id)
 						{
-							missions[i].MissionUsername = user[j].Username;
+							missions[i].MissionUsername = onlineUser[j].Username;
 						}
 					}
 				}

@@ -58,6 +58,13 @@ namespace TaskApp.Controllers
 		{
 			try
 			{
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
 				ForumPostModel result = null;
 
 				var newPost = new ForumPost();

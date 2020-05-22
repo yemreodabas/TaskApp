@@ -28,8 +28,14 @@ namespace TaskApp.Controllers
 		{
 			try
 			{
-				var user = this._userService.GetOnlineUser(this.HttpContext);
-				var missions = this._missionService.GetAllMyMissionsByUserId(user.Id);
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
+				var missions = this._missionService.GetAllMyMissionsByUserId(onlineUser.Id);
 
 				var response = ApiResponse<List<MissionModel>>.WithSuccess(missions);
 
@@ -49,10 +55,16 @@ namespace TaskApp.Controllers
 			{
 				bool contain = false;
 
-				var user = this._userService.GetOnlineUser(this.HttpContext);
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
 				var users = this._userService.GetAllUsers();
 				var missions = this._missionService.GetAllMission();
-				var targets = this._userService.GetTargetUsers(user.Id);
+				var targets = this._userService.GetTargetUsers(onlineUser.Id);
 
 				for(int i =0; i< missions.Count;i++)
 				{
@@ -105,13 +117,18 @@ namespace TaskApp.Controllers
 					return Json(ApiResponse<MissionModel>.WithError("Name is required"));
 				}
 
-				var user = this._userService.GetOnlineUser(this.HttpContext);
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
 
 				MissionModel result = null;
 
 				var newMission = new Mission();
 				newMission.Name = model.Name;
-				newMission.UserId = user.Id;
+				newMission.UserId = onlineUser.Id;
 
 				this._missionService.AddNewMission(newMission);
 				result = _missionService.GetById(newMission.Id);

@@ -15,7 +15,7 @@ namespace TaskApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				dbConnection.Execute("INSERT INTO DirectMessage (Message, SenderId, ReceiverId) VALUES(@Message, @SenderId, @ReceiverId)", message);
+				dbConnection.Execute("INSERT INTO DirectMessage (Message, SenderId, ReceiverId, IsDeleted) VALUES(@Message, @SenderId, @ReceiverId, @IsDeleted)", message);
 				message.Id = dbConnection.ExecuteScalar<int>("SELECT last_insert_rowid()");
 			}
 		}
@@ -48,7 +48,17 @@ namespace TaskApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.Query<DirectMessageModel>("SELECT * FROM DirectMessage WHERE SenderId = "+ onlineUserId + " AND ReceiverId = "+ receiverId + " OR SenderId = " + receiverId + " AND ReceiverId = " + onlineUserId + "", new { OnlineUserId = onlineUserId, UserId = receiverId });
+				return dbConnection.Query<DirectMessageModel>("SELECT * FROM DirectMessage WHERE SenderId = @OnlineUserId AND ReceiverId = @ReceiverId OR SenderId = @ReceiverId AND ReceiverId = @OnlineUserId", new { OnlineUserId = onlineUserId, ReceiverId = receiverId });
+				//return dbConnection.Query<DirectMessageModel>("SELECT * FROM DirectMessage WHERE SenderId = "+ onlineUserId + " AND ReceiverId = "+ receiverId + " OR SenderId = " + receiverId + " AND ReceiverId = " + onlineUserId + "", new { OnlineUserId = onlineUserId, UserId = receiverId });
+			}
+		}
+
+		public IEnumerable<DirectMessageModel> GetLastMessage(int onlineUserId, int receiverId, int lastMessageId)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				return dbConnection.Query<DirectMessageModel>("SELECT * FROM DirectMessage WHERE Id > @lastMessageId AND SenderId = @ReceiverId AND ReceiverId = @OnlineUserId", new { OnlineUserId = onlineUserId, ReceiverId = receiverId, LastMessageId = lastMessageId });
+				//return dbConnection.Query<DirectMessageModel>("SELECT * FROM DirectMessage WHERE Id > @lastMessageId AND SenderId = " + receiverId + " AND ReceiverId = " + onlineUserId + "", new { OnlineUserId = onlineUserId, UserId = receiverId, LastMessageId = lastMessageId });
 			}
 		}
 
@@ -56,7 +66,8 @@ namespace TaskApp.Persistence.Dapper
 		{
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
-				return dbConnection.Query<DirectMessageModel>("SELECT * FROM DirectMessage WHERE SenderId = " + receiverId + " AND ReceiverId = " + onlineUserId + "", new { OnlineUserId = onlineUserId, UserId = receiverId });
+				return dbConnection.Query<DirectMessageModel>("SELECT * FROM DirectMessage WHERE SenderId =@ReceiverId AND ReceiverId = @OnlineUserId", new { OnlineUserId = onlineUserId, ReceiverId = receiverId });
+				//return dbConnection.Query<DirectMessageModel>("SELECT * FROM DirectMessage WHERE SenderId = " + receiverId + " AND ReceiverId = " + onlineUserId + "", new { OnlineUserId = onlineUserId, ReceiverId = receiverId });
 			}
 		}
 		/*
@@ -81,6 +92,18 @@ namespace TaskApp.Persistence.Dapper
 			using (IDbConnection dbConnection = this.OpenConnection())
 			{
 				dbConnection.Execute("DELETE FROM DirectMessage WHERE Id = @Id", new { Id = id });
+			}
+		}
+
+		public void Update(DirectMessageModel directMessage)
+		{
+			using (IDbConnection dbConnection = this.OpenConnection())
+			{
+				string sQuery = "UPDATE DirectMessage SET " +
+					"IsDeleted = 1 " +
+					"WHERE Id = @Id";
+
+				dbConnection.Query(sQuery, directMessage);
 			}
 		}
 	}
