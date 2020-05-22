@@ -13,5 +13,6 @@ namespace TaskApp.Entities
 		public string Message { get; set; }
 		public int SenderId { get; set; }
 		public int ReceiverId { get; set; }
+		public int IsDeleted { get; set; }
 	}
 }

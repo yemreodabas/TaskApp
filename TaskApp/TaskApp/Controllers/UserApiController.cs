@@ -46,6 +46,13 @@ namespace TaskApp.Controllers
 		{
 			try
 			{
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineUser != null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
 				UserModel result = null;
 
 				var newUser = new User();
@@ -77,6 +84,11 @@ namespace TaskApp.Controllers
 			try
 			{
 				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				if(onlineUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
 
 				UserModel result = null;
 
@@ -162,6 +174,11 @@ namespace TaskApp.Controllers
 			{
 				var followerUser = this._userService.GetOnlineUser(this.HttpContext);
 
+				if (followerUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
 				this._userService.FollowUser(followerUser.Id, targetUser);
 
 				return Json(ApiResponse.WithSuccess());
@@ -180,6 +197,11 @@ namespace TaskApp.Controllers
 			{
 				var followerUser = this._userService.GetOnlineUser(this.HttpContext);
 
+				if (followerUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
 				this._userService.UnFollowUser(followerUser.Id, targetUser);
 
 				return Json(ApiResponse.WithSuccess());
@@ -197,6 +219,11 @@ namespace TaskApp.Controllers
 			try
 			{
 				var onlineId = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineId == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
 
 				var users = this._userService.GetFollowUsers(onlineId.Id);
 
@@ -235,6 +262,11 @@ namespace TaskApp.Controllers
 			try
 			{
 				var onlineId = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineId == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
 
 				var users =  this._userService.GetTargetUsers(onlineId.Id);
 
@@ -276,11 +308,17 @@ namespace TaskApp.Controllers
 
 				var onlineId = this._userService.GetOnlineUser(this.HttpContext);
 
+				if (onlineId == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
 				var targetUsers = this._userService.GetTargetUsers(onlineId.Id);
 
+				//var users = this._userService.GetAllUsers();
 				var users = this._userService.GetAllUsers();
 
-				for(int i = 0; i < users.Count;i++)
+				for (int i = 0; i < users.Count;i++)
 				{
 					if(users[i].Id == onlineId.Id)
 					{
@@ -324,12 +362,20 @@ namespace TaskApp.Controllers
 		{
 			try
 			{
+				var onlineId = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineId == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
 				DirectMessageModel result = null;
 
 				var newMessage = new DirectMessage();
 				newMessage.Message = model.Message;
 				newMessage.SenderId = model.SenderId;
 				newMessage.ReceiverId = model.ReceiverId;
+				newMessage.IsDeleted = 0;
 
 				this._directMessageService.AddNewMessage(newMessage);
 
@@ -350,11 +396,69 @@ namespace TaskApp.Controllers
 			{
 				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
 
+				if (onlineUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
 				var messages = this._directMessageService.GetMessageById(onlineUser.Id, receiverId);
 
 				var response = ApiResponse<List<DirectMessageModel>>.WithSuccess(messages);
 
 				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpGet]
+		[Route(nameof(GetLastMessage))]
+		public ActionResult<ApiResponse> GetLastMessage(int lastMessageId)
+		{
+			try
+			{
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
+				var lastMessage = this._directMessageService.GetById(lastMessageId);
+
+				int receiverId = lastMessage.ReceiverId;
+
+				var messages = this._directMessageService.GetLastMessage(onlineUser.Id, receiverId, lastMessageId);
+
+				var response = ApiResponse<List<DirectMessageModel>>.WithSuccess(messages);
+
+				return Json(response);
+			}
+			catch (Exception exp)
+			{
+				return Json(ApiResponse.WithError(exp.ToString()));
+			}
+		}
+
+		[HttpDelete]
+		[Route(nameof(DeleteMessage))]
+		public ActionResult<ApiResponse> DeleteMessage([FromBody] int messageId)
+		{
+			try
+			{
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
+				var deletedMessage = this._directMessageService.GetById(messageId);
+				this._directMessageService.UpdateMessageStatus(deletedMessage);
+				
+				return Json(ApiResponse.WithSuccess());
 			}
 			catch (Exception exp)
 			{

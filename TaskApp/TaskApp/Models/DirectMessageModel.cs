@@ -12,6 +12,7 @@ namespace TaskApp.Models
 		public string Message { get; set; }
 		public int SenderId { get; set; }
 		public int ReceiverId { get; set; }
+		public int IsDeleted { get; set; }
 
 		public DirectMessageModel() { }
 
@@ -21,6 +22,7 @@ namespace TaskApp.Models
 			this.Message = directMessage.Message;
 			this.SenderId = directMessage.SenderId;
 			this.ReceiverId = directMessage.ReceiverId;
+			this.IsDeleted = directMessage.IsDeleted;
 		}
 	}
 }

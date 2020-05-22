@@ -63,7 +63,12 @@ namespace TaskApp.Controllers
 		{
 			var model = this.services.ViewService.CreateViewModel<BaseViewModel>(this.HttpContext, nameof(this.MyProfile));
 
-			return View(model);
+			if(model != null)
+			{
+				return View(model);
+			}
+
+			return RedirectToAction("Login", "User");
 		}
 		
 
@@ -71,7 +76,12 @@ namespace TaskApp.Controllers
 		{
 			var model = this.services.ViewService.CreateViewModel<BaseViewModel>(this.HttpContext, nameof(this.NewsFeed));
 
-			return View(model);
+			if (model != null)
+			{
+				return View(model);
+			}
+
+			return RedirectToAction("Login", "User");
 		}
 		
 		public ActionResult DirectMessage(int id)
@@ -79,7 +89,12 @@ namespace TaskApp.Controllers
 			var model = this.services.ViewService.CreateViewModel<UserViewModel>(this.HttpContext, nameof(this.DirectMessage));
 			model.UserId = id;
 
-			return View(model);
+			if(model != null)
+			{
+				return View(model);
+			}
+
+			return RedirectToAction("Login", "User");
 		}
 
 		public ActionResult UserProfile(int id)

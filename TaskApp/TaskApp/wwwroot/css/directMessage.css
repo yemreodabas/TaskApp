@@ -12,8 +12,9 @@ for details on configuring this project to bundle and minify static web assets. 
 #message-list {
     width: 350px;
 
-    padding-left: 15px;
     padding-right: 15px;
+
+    margin-bottom:30px;
 }
 .message-input {
     display: block;
@@ -30,4 +31,25 @@ for details on configuring this project to bundle and minify static web assets. 
     margin-bottom: 5px;
     padding-right: 30px;
     font-family: 'DM Mono', monospace;
+}
+#send-message-box
+{
+    margin-bottom:30px;
+}
+.delete-message-btn
+{
+    display:block;
+}
+.deleted-message {
+    margin-top:10px;
+    margin-bottom:10px;
+    color: #511deb;
+}
+.sender-message-div
+{
+    float:right;
+}
+.receiver-message-div
+{
+    float:left;
 }

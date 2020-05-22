@@ -53,7 +53,12 @@ namespace TaskApp.Controllers
 					return Json(ApiResponse<OperationModel>.WithError("Name is required"));
 				}
 
-				var user = this._userService.GetOnlineUser(this.HttpContext);
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
 
 				OperationModel result = null;
 
@@ -79,6 +84,13 @@ namespace TaskApp.Controllers
 		{
 			try
 			{
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
 				this._operationService.Delete(operationId);
 
 				return Json(ApiResponse.WithSuccess());
@@ -95,6 +107,13 @@ namespace TaskApp.Controllers
 		{
 			try
 			{
+				var onlineUser = this._userService.GetOnlineUser(this.HttpContext);
+
+				if (onlineUser == null)
+				{
+					return Json(ApiResponse.WithError("Not Authority"));
+				}
+
 				var updateOperation = this._operationService.GetByOperationId(operationId);
 				this._operationService.Update(operationId);
 

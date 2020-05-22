@@ -21,7 +21,13 @@ namespace TaskApp.Controllers
 		public ActionResult ListMission()
 		{
 			var model = this.services.ViewService.CreateViewModel<BaseViewModel>(this.HttpContext, nameof(this.ListMission));
-			return View(model);
+			
+			if(model != null)
+			{
+				return View(model);
+			}
+
+			return RedirectToAction("Login", "User");
 		}
 	}
 }

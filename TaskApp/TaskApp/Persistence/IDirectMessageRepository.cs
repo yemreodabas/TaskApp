@@ -11,10 +11,12 @@ namespace TaskApp.Persistence
     {
         void Insert(DirectMessage messages);
         void Delete(int id);
+        void Update(DirectMessageModel directMessage);
         IEnumerable<DirectMessageModel> GetAll();
         //IEnumerable<DirectMessageModel> GetById(int onlineUserId);
         DirectMessageModel GetById(int id);
         IEnumerable<DirectMessageModel> GetMessageByUserId(int onlineUserId, int receiverId);
         IEnumerable<DirectMessageModel> GetReceiverMessage(int onlineUserId, int receiverId);
+        IEnumerable<DirectMessageModel> GetLastMessage(int onlineUserId, int receiverId, int lastMessageId);
     }
 }
